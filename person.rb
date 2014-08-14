@@ -1,10 +1,10 @@
 pizza = ["dough", "cheese", "sauce"]
-pad_thai = ["noodles", "tofu", "peanuts","bean sprout"]
+pad_thai = ["noodles", "tofu", "peanuts","bean sprouts"]
 grilled_cheese = ["cheese", "bread"]
 
 class Person
 
-  attr_accessor :name, :allergy, :stomach
+  attr_accessor :name, :allergy
 
   @@contains_gluten = /bread|dough|pasta/i
   @@contains_soy = /tofu|soy/i
@@ -17,10 +17,12 @@ class Person
     @allergy = allergy
     @stomach = []
   end
+
   def eat(food)
     @stomach.push(food)
-
-    if allergy === "peanut"
+    if allergy === nil
+      p "I'm #{@name} and I eat what I want!"
+    elsif allergy === "peanut"
       food.each do |ingr|
         if @@contains_nuts.match(ingr)
           dump(ingr)
@@ -45,11 +47,11 @@ class Person
         end
       end
     end
-
   end
+
   def dump(ingr)
     @stomach = []
-    p "BLERGH! MY STOMACH...I'm #{@name} and I can't eat #{ingr}... :("
+    p "BLERGH! MY STOMACH...I'm #{@name} and I can't eat #{ingr} because of my #{@allergy} allergy... :("
   end
 
 end
@@ -69,4 +71,6 @@ p4.eat(pad_thai)
 p4 = Person.new("Tim", "peanut")
 p4.eat(pizza)
 
+p5 = Person.new("Palmer", nil)
+p5.eat(pizza)
 
