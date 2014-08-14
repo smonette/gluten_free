@@ -19,57 +19,54 @@ class Person
   end
   def eat(food)
     @stomach.push(food)
-    p "YUM! I just had #{food}"
 
     if allergy === "peanut"
       food.each do |ingr|
         if @@contains_nuts.match(ingr)
-          dump()
+          dump(ingr)
         end
       end
     elsif allergy === "gluten"
       food.each do |ingr|
         if @@contains_gluten.match(ingr)
-          dump()
+          dump(ingr)
         end
       end
     elsif  allergy === "dairy"
       food.each do |ingr|
         if @@contains_dairy.match(ingr)
-          dump()
+          dump(ingr)
         end
       end
     elsif allergy === "soy"
       food.each do |ingr|
         if @@contains_soy.match(ingr)
-          dump()
+          dump(ingr)
         end
       end
     end
 
-
-
   end
-  def dump
+  def dump(ingr)
     @stomach = []
-    p "BLERGH! MY STOMACH........ :("
+    p "BLERGH! MY STOMACH...I'm #{@name} and I can't eat #{ingr}... :("
   end
 
 end
 
 p1 = Person.new("Anil", "dairy")
 p1.eat(pizza)
-p p1.name
-p p1.allergy
-p p1.stomach
 
 p2 = Person.new("Steph", "soy")
 p2.eat(pad_thai)
-p p2.name
-p p2.allergy
-p p2.stomach
 
+p3 = Person.new("Alli", "gluten")
+p3.eat(grilled_cheese)
 
+p4 = Person.new("David", "peanut")
+p4.eat(pad_thai)
 
+p4 = Person.new("Tim", "peanut")
+p4.eat(pizza)
 
 
